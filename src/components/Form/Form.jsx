@@ -8,20 +8,18 @@ export class Form extends Component {
 			name: '',
 			date: '',
 			time: '',
-			number: null
+			number: 0
 		};
 	}
 
 	submitReservation = e => {
 		e.preventDefault();
-		this.setState({
-			number: this.state.number++
-		});
 		const newReservation = {
 			...this.state,
 			id: Date.now()
 		};
 		this.props.addReservation(newReservation);
+		this.props.postReservation(newReservation);
 		this.clearInputs();
 	};
 
