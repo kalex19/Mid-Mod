@@ -3,7 +3,7 @@ import './App.css';
 import Form from '../Form/Form';
 import Container from '../Container/Container';
 
-class App extends Component {
+export class App extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -12,7 +12,8 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch('').then(response => response.json()).then(ideas =>
+		console.log('hello');
+		fetch('http://localhost:3001/api/v1/reservations').then(response => response.json()).then(ideas =>
 			this.setState({
 				ideas
 			})
@@ -26,7 +27,8 @@ class App extends Component {
 	};
 
 	deleteIdea = id => {
-		const filteredIdeas = ideas.filter(idea => idea.id != id);
+		const { ideas } = this.state;
+		const filteredIdeas = ideas.filter(idea => idea.id !== id);
 		this.setState({
 			ideas: filteredIdeas
 		});
