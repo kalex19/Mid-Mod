@@ -1,0 +1,19 @@
+.card {
+  background-color: white;
+  border: 5px dotted teal;
+  font-size: 1.2em;
+  margin: 5%;
+  padding: 2%;
+}
+
+.deleteBtn {
+  background-color: teal;
+  border: black solid 2px;
+  color: white;
+  height: 50px;
+}
+
+.deleteBtn:hover {
+  background-color: white;
+  color: teal;
+}
