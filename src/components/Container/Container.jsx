@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Card/Card';
+import './Container.css';
 
 const Container = ({ reservations, deleteReservation }) => {
 	const cards = reservations.map(res => {
@@ -15,7 +16,7 @@ const Container = ({ reservations, deleteReservation }) => {
 			/>
 		);
 	});
-	return <div>{cards}</div>;
+	return <div className={'card-container'}>{cards}</div>;
 };
 
 export default Container;

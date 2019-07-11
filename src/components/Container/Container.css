@@ -1,0 +1,5 @@
+.card-container {
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  margin: 1%;
+}
