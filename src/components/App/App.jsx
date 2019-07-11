@@ -1,20 +1,52 @@
 import React, { Component } from 'react';
 import './App.css';
+import Form from '../Form/Form';
+import Container from '../Container/Container';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1 className='app-title'>Turing Cafe Reservations</h1>
-        <div className='resy-form'>
+export class App extends Component {
+	constructor() {
+		super();
+		this.state = {
+			reservations: []
+		};
+	}
 
-        </div>
-        <div className='resy-container'>
-          
-        </div>
-      </div>
-    )
-  }
+	componentDidMount() {
+		console.log('hello');
+		fetch('http://localhost:3001/api/v1/reservations').then(response => response.json()).then(reservations =>
+			this.setState({
+				reservations
+			})
+		);
+	}
+
+	addReservation = newReservation => {
+		this.setState({
+			reservations: [ ...this.state.reservations, newReservation ]
+		});
+	};
+
+	deleteIdea = id => {
+		const { reservations } = this.state;
+		const filteredReservation = reservations.filter(res => res.id !== id);
+		this.setState({
+			reservations: filteredReservation
+		});
+	};
+
+	render() {
+		return (
+			<div className="App">
+				<h1 className="app-title">Turing Cafe Reservations</h1>
+				<div className="resy-form">
+					<Form addReservation={this.addReservation} />
+				</div>
+				<div className="resy-container">
+					<Container deleteReservation={this.deleteReservation} reservations={this.state.reservations} />
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;
