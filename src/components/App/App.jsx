@@ -26,7 +26,7 @@ export class App extends Component {
 		});
 	};
 
-	deleteIdea = id => {
+	deleteReservation = id => {
 		const { reservations } = this.state;
 		const filteredReservation = reservations.filter(res => res.id !== id);
 		this.setState({

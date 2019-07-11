@@ -1,0 +1,16 @@
+.form-input {
+  margin: 0 1%;
+  font-size: 1em;
+  width: 20%;
+}
+
+.submitBtn {
+  background-color: teal;
+  color: white;
+  font-size: 1.2em;
+}
+
+.submitBtn:hover {
+  background-color: white;
+  color: teal;
+}
