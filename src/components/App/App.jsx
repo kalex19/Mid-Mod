@@ -7,30 +7,30 @@ export class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			ideas: []
+			reservations: []
 		};
 	}
 
 	componentDidMount() {
 		console.log('hello');
-		fetch('http://localhost:3001/api/v1/reservations').then(response => response.json()).then(ideas =>
+		fetch('http://localhost:3001/api/v1/reservations').then(response => response.json()).then(reservations =>
 			this.setState({
-				ideas
+				reservations
 			})
 		);
 	}
 
-	addIdea = newIdea => {
+	addReservation = newReservation => {
 		this.setState({
-			ideas: [ ...this.state.ideas, newIdea ]
+			reservations: [ ...this.state.reservations, newReservation ]
 		});
 	};
 
 	deleteIdea = id => {
-		const { ideas } = this.state;
-		const filteredIdeas = ideas.filter(idea => idea.id !== id);
+		const { reservations } = this.state;
+		const filteredReservation = reservations.filter(res => res.id !== id);
 		this.setState({
-			ideas: filteredIdeas
+			reservations: filteredReservation
 		});
 	};
 
@@ -39,10 +39,10 @@ export class App extends Component {
 			<div className="App">
 				<h1 className="app-title">Turing Cafe Reservations</h1>
 				<div className="resy-form">
-					<Form addIdea={this.addIdea} />
+					<Form addReservation={this.addReservation} />
 				</div>
 				<div className="resy-container">
-					<Container deleteIdea={this.deleteIdea} ideas={this.state.ideas} />
+					<Container deleteReservation={this.deleteReservation} reservations={this.state.reservations} />
 				</div>
 			</div>
 		);

@@ -1,17 +1,17 @@
 import React from 'react';
 import Card from '../Card/Card';
 
-const Container = ({ ideas, deleteIdea }) => {
-	const cards = ideas.map(idea => {
+const Container = ({ reservations, deleteReservation }) => {
+	const cards = reservations.map(res => {
 		return (
 			<Card
-				deleteIdea={deleteIdea}
-				name={idea.name}
-				id={idea.id}
-				date={idea.date}
-				time={idea.time}
-				number={idea.number}
-				key={idea.id}
+				deleteReservation={deleteReservation}
+				name={res.name}
+				id={res.id}
+				date={res.date}
+				time={res.time}
+				number={res.number}
+				key={res.id}
 			/>
 		);
 	});
