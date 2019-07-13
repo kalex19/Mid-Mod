@@ -13,13 +13,7 @@ export class Form extends Component {
 	}
 
 	submitReservation = e => {
-		e.preventDefault();
-		const newReservation = {
-			...this.state,
-			id: Date.now()
-		};
-		this.props.addReservation(newReservation);
-		this.props.postReservation(newReservation);
+		this.props.addReservation({ ...this.state });
 		this.clearInputs();
 	};
 
@@ -34,7 +28,8 @@ export class Form extends Component {
 		this.setState({
 			name: '',
 			date: '',
-			time: ''
+			time: '',
+			number: 0
 		});
 	};
 
@@ -62,6 +57,14 @@ export class Form extends Component {
 					name="time"
 					value={this.state.time}
 					placeholder="Enter reservation time as 00:00"
+					className="form-input"
+					onChange={this.handleChange}
+				/>
+				<input
+					type="number"
+					name="number"
+					value={this.state.number}
+					placeholder="Enter number of people"
 					className="form-input"
 					onChange={this.handleChange}
 				/>

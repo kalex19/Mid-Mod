@@ -19,33 +19,26 @@ export class App extends Component {
 		);
 	}
 
-	addReservation = newReservation => {
-		this.setState({
-			reservations: [ ...this.state.reservations, newReservation ]
-		});
-	};
-
 	deleteReservation = id => {
-		const { reservations } = this.state;
-		const filteredReservation = reservations.filter(res => res.id !== id);
-		this.setState({
-			reservations: filteredReservation
-		});
+		fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+			method: 'DELETE'
+		}).then(() =>
+			this.setState({
+				reservations: this.state.reservations.filter(res => res.id !== id)
+			})
+		);
 	};
 
-	postReservation = ({ newReservation }) => {
-		console.log(newReservation);
+	addReservation = newReservation => {
 		fetch('http://localhost:3001/api/v1/reservations', {
 			method: 'POST',
-			body: JSON.stringify({
-				newReservation
-			}),
 			headers: {
-				'content-type': 'application/json'
-			}
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newReservation)
 		})
 			.then(response => response.json())
-			.then(reservation => this.setState([ ...this.state.reservations, reservation ]))
+			.then(reservation => this.setState({ reservations: [ ...this.state.reservations, reservation ] }))
 			.catch(error => console.log(error));
 	};
 
